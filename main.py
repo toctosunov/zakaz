@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QHBoxLayout, QVBoxLayout, QDateEdit, 
     QFrame, QDialog, QFileDialog, 
+    QSplitter
 )
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
@@ -24,6 +25,10 @@ class MainWindow(QMainWindow):
 
         main_layout = QHBoxLayout()
         central_widget.setLayout(main_layout)
+
+        splitter = QSplitter(Qt.Orientation.Horizontal)
+        self.setCentralWidget(splitter)
+
 
         self.current_theme = "dark"  # стартовая тема
         self.apply_theme(self.current_theme)
@@ -51,7 +56,7 @@ class MainWindow(QMainWindow):
         left_layout.setContentsMargins(20, 0, 20, 360)
 
         leftLayoutBorder.setLayout(left_layout)
-        main_layout.addWidget(leftLayoutBorder, 20)
+        splitter.addWidget(leftLayoutBorder)
 
         self.title = CreatWidget.create_label("Данные получателя: ", 30)
         self.phoneNumber = CreatWidget.create_line_edit("Введите телефон номера: ")
@@ -76,6 +81,7 @@ class MainWindow(QMainWindow):
         self.birthday.setCalendarPopup(True)
         self.birthday.setFixedHeight(50)
         left_layout.addWidget(self.birthday)
+
 #endregion
         
 #region правая часть
@@ -83,7 +89,7 @@ class MainWindow(QMainWindow):
         right_layout.setSpacing(20)
         RightLayoutBorder.setLayout(right_layout)
 
-        main_layout.addWidget(RightLayoutBorder, 80) 
+        splitter.addWidget(RightLayoutBorder)
 
         tabsLayout = QHBoxLayout()
 
@@ -200,7 +206,8 @@ class MainWindow(QMainWindow):
         try:
             count = int(self.productCount.toPlainText())
             price = int(self.Price.toPlainText())
-            summa = count * price
+            if count and price:
+                summa = count * price
             self.Sum.setText(str(summa))  # Преобразуем в строку
         except ValueError:
             self.Sum.setText("Ошибка ввода")
