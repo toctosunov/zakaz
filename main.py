@@ -73,6 +73,9 @@ class MainWindow(QMainWindow):
 
         self.gender = CreatWidget.create_combo_box(["Мужчина", "Женщина"])
         left_layout.addWidget(self.gender)
+        
+        self.language = CreatWidget.create_combo_box(["Кыргыз", "Индус", "Узбек", "Русский", "Другая"])
+        left_layout.addWidget(self.language)
 
         self.group = CreatWidget.create_combo_box(["Жалал-Абад", "Ош"])
         left_layout.addWidget(self.group)
@@ -81,6 +84,9 @@ class MainWindow(QMainWindow):
         self.birthday.setCalendarPopup(True)
         self.birthday.setFixedHeight(50)
         left_layout.addWidget(self.birthday)
+
+        self.create_button = CreatWidget.create_Button("Создать", self.toggle_theme, 50)
+        left_layout.addWidget(self.create_button)
 
 #endregion
         
