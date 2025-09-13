@@ -5,7 +5,7 @@ import customTimePicker
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QHBoxLayout, QVBoxLayout, QDateEdit, 
-    QFrame, QDialog, QFileDialog,
+    QFrame, QDialog, QFileDialog, 
 )
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
@@ -54,14 +54,14 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(leftLayoutBorder, 20)
 
         self.title = CreatWidget.create_label("Данные получателя: ", 30)
-        self.fullname = CreatWidget.create_line_edit("Введите ФИО:")
+        self.phoneNumber = CreatWidget.create_line_edit("Введите телефон номера: ")
 
-        fullnamLayout = CreatWidget.create_layout("v", [self.title, self.fullname])
+        fullnamLayout = CreatWidget.create_layout("v", [self.title, self.phoneNumber])
         fullnamLayout.setSpacing(10)
         left_layout.addLayout(fullnamLayout)
 
-        self.phoneNumber = CreatWidget.create_line_edit("Введите телефон номера: ")
-        left_layout.addWidget(self.phoneNumber)
+        self.full_name = CreatWidget.create_line_edit("Введите ФИО:")
+        left_layout.addWidget(self.full_name)
 
         self.adress = CreatWidget.create_line_edit("Адрес: ")
         left_layout.addWidget(self.adress)
